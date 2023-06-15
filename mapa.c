@@ -8,7 +8,7 @@ typedef struct
 {
     char nome[50];
     char cpf[12];
-    char dataNascimento[4];
+    char dataNascimento[50];
 } Ingresso;
 
 Ingresso ingressos[MAX_INGRESSOS];
@@ -32,7 +32,7 @@ void venderIngresso()
     scanf(" %[^\n]", novoIngresso.nome);
     printf("CPF do comprador: ");
     scanf(" %[^\n]", novoIngresso.cpf);
-    printf("Ano de nascimento do comprador (AAAA): ");
+    printf("Ano de nascimento do comprador: ");
     scanf(" %[^\n]", novoIngresso.dataNascimento);
 
     ingressos[numIngressos] = novoIngresso;
@@ -63,6 +63,8 @@ void validarIngresso()
     printf("Digite o CPF para validar o ingresso: ");
     scanf(" %[^\n]", cpf);
 
+    int ingressoEncontrado = 0;
+
     for (int i = 0; i < numIngressos; i++)
     {
         if (strcmp(ingressos[i].cpf, cpf) == 0)
@@ -70,15 +72,20 @@ void validarIngresso()
             printf("\n");
             printf("Ingresso válido!\n");
             printf("Nome: %s\n", ingressos[i].nome);
-            printf("Data de Nascimento: %s\n", ingressos[i].dataNascimento);
-            return;
-        }
-        else
-        {
-            printf("Ingresso não encontrado.\n");
+            printf("CPF: %s\n", ingressos[i].cpf);
+            printf("Ano de Nascimento: %s\n", ingressos[i].dataNascimento);
+            printf("========================\n");
+            ingressoEncontrado = 1; 
+            break; 
         }
     }
+
+    if (!ingressoEncontrado)
+    {
+        printf("Ingresso não encontrado.\n");
+    }
 }
+
 
 int main()
 {

@@ -51,6 +51,6 @@ int main()
             printf("%i ", dupli[i]);
         }
     }
-
+    
     return 0;
 }
