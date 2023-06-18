@@ -2,43 +2,44 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define TAMANHO_VETOR 6
-#define LIMITE_NUMERO 60
+int numeroRandomicoNaoRepetido(int sorteioMega[6])
+{
 
-int numeroRandomicoNaoRepetido(int vetor[], int index) {
-    int numero;
+    int numeroSorteado;
     int repetido;
 
-    do {
-        numero = rand() % LIMITE_NUMERO + 1;
+    do
+    {
+        numeroSorteado = rand() % 60 + 1;
 
         repetido = 0;
-        for (int i = 0; i < index; i++) {
-            if (vetor[i] == numero) {
+        for (int i = 0; i < 6; i++)
+        {
+            if (sorteioMega[i] == numeroSorteado)
+            {
                 repetido = 1;
                 break;
             }
         }
     } while (repetido);
 
-    return numero;
+    return numeroSorteado;
 }
 
-int main() {
-    int numeros[TAMANHO_VETOR];
+int main()
+{
+    
+    int sorteioMega[6];
+    int x = 0;
 
-    srand(time(NULL));
-
-
-    for (int i = 0; i < TAMANHO_VETOR; i++) {
-        numeros[i] = numeroRandomicoNaoRepetido(numeros, i);
+    for (x = 0; x < 6; x++)
+    {
+        sorteioMega[x] = numeroRandomicoNaoRepetido(sorteioMega);
     }
 
-    printf("Números sorteados: ");
-    for (int i = 0; i < TAMANHO_VETOR; i++) {
-        printf("%d ", numeros[i]);
+    printf("Numeros sorteados de 1 a 60 da Mega Sena\n");
+    for (x = 0; x < 6; x++)
+    {
+        printf("%i ", sorteioMega[x]);
     }
-    printf("\n");
-
-    return 0;
 }

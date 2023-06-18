@@ -2,32 +2,45 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main()
+int numeroRandomicoNaoRepetido(int sorteioMega[6])
 {
 
-    int i = 0, j, igual, vet[25];
-
-    srand(time(NULL));
+    int numeroSorteado;
+    int repetido;
 
     do
     {
-        vet[i] = rand() % 30;
-        igual = 0;
-        for (j = 0; j < i; j++)
+        numeroSorteado = rand() % 60 + 1;
+
+        repetido = 0;
+        for (int i = 0; i < 6; i++)
         {
-            if (vet[j] == vet[i])
-                igual = 1;
+            if (sorteioMega[i] == numeroSorteado)
+            {
+                repetido = 1;
+                break;
+            }
         }
+    } while (repetido);
 
-        if (igual == 0)
-            i++;
-    } while (i < 25);
+    return numeroSorteado;
+}
 
-    for (i = 0; i < 25; i++)
+int main()
+{
+    
+    int sorteioMega[6];
+    int x = 0;
+
+    for (x = 0; x < 6; x++)
     {
-        printf("%d ", vet[i]);
+        srand(time(NULL));
+        sorteioMega[x] = numeroRandomicoNaoRepetido(sorteioMega);
     }
-    printf("\n\n");
 
-    return 0;
+    printf("Numeros sorteados de 1 a 60 da Mega Sena\n");
+    for (x = 0; x < 6; x++)
+    {
+        printf("%i ", sorteioMega[x]);
+    }
 }
